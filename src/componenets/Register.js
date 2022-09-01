@@ -14,15 +14,20 @@ const Register = (props) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (password === retypePassword) {
-      const token = await registerUser(username, password);
-      handleLocalStorage(token);
-      const user = await getMe(token);
-      props.setCurrentUser(user);
-      setUsername('');
-      setPassword('');
+      const result = await registerUser(username, password);
+      if (result.success) {
+        const token = result.data.token;
+        handleLocalStorage(token);
+        const user = await getMe(token);
+        props.setCurrentUser(user);
+      } else {
+        window.alert(result.error.message);
+      }
     } else {
       window.alert('Passwords do not match');
     }
+    setUsername('');
+    setPassword('');
   };
 
   return (
