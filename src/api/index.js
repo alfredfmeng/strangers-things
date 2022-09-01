@@ -47,7 +47,7 @@ export const loginUser = async (username, password) => {
       }),
     });
     const result = await response.json();
-    return result.data.token;
+    const token = result.data.token ? result.data.token : null;
   } catch (error) {
     throw error;
   }
@@ -63,6 +63,33 @@ export const getMe = async (token) => {
     });
     const result = await response.json();
     return result.data.username;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const newPost = async (
+  { title, description, price, willDeliver },
+  token
+) => {
+  try {
+    const respnose = await fetch(`${BASE_URL}${COHORT}/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title,
+          description,
+          price,
+          willDeliver,
+        },
+      }),
+    });
+    const result = await response.json();
+    const newPost = result.data.post;
   } catch (error) {
     throw error;
   }
