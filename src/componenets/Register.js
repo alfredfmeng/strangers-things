@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { registerUser } from '../api';
+import handleLocalStorage from '../utils/handleLocalStorage';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -14,8 +15,7 @@ const Register = () => {
     evt.preventDefault();
     if (password === retypePassword) {
       const token = await registerUser(username, password);
-      console.log(token);
-      localStorage.setItem('token', token);
+      handleLocalStorage(token);
     } else {
       window.alert('Passwords do not match');
     }
