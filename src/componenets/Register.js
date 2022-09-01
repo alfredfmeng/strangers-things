@@ -24,7 +24,7 @@ const Register = () => {
   return (
     <form id="register-form" onSubmit={handleSubmit}>
       <label htmlFor="email">Email:</label>
-      <input type="text" name="email" onChange={handleChange} required />
+      <input type="email" name="email" onChange={handleChange} required />
 
       <label htmlFor="password">Password:</label>
       <input
