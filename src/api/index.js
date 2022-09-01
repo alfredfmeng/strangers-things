@@ -52,3 +52,18 @@ export const loginUser = async (username, password) => {
     throw error;
   }
 };
+
+export const getMe = async (token) => {
+  try {
+    const response = await fetch(`${BASE_URL}${COHORT}/users/me`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    console.log('ME', result.data.username, result.data._id);
+  } catch (error) {
+    throw error;
+  }
+};
