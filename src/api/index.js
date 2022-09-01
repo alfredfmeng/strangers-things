@@ -73,7 +73,7 @@ export const newPost = async (
   token
 ) => {
   try {
-    const respnose = await fetch(`${BASE_URL}${COHORT}/posts`, {
+    const response = await fetch(`${BASE_URL}${COHORT}/posts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
