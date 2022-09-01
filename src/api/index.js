@@ -10,3 +10,24 @@ export const getPosts = async () => {
     throw error;
   }
 };
+
+export const registerUser = async (username, password) => {
+  try {
+    const response = await fetch(`${BASE_URL}${COHORT}/users/register`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          username,
+          password,
+        },
+      }),
+    });
+    const result = await response.json();
+    return result.data.token;
+  } catch (error) {
+    throw error;
+  }
+};
