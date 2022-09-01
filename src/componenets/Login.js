@@ -9,11 +9,15 @@ const Login = (props) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     const token = await loginUser(username, password);
-    handleLocalStorage(token);
-    const user = await getMe(token);
-    props.setCurrentUser(user);
-    setUsername('');
-    setPassword('');
+    if (!token) {
+      window.alert('Invalid username or password');
+    } else {
+      handleLocalStorage(token);
+      const user = await getMe(token);
+      props.setCurrentUser(user);
+      setUsername('');
+      setPassword('');
+    }
   };
   return (
     <form id="login-form" onSubmit={handleSubmit}>
