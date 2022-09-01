@@ -62,7 +62,7 @@ export const getMe = async (token) => {
       },
     });
     const result = await response.json();
-    console.log('ME', result.data.username, result.data._id);
+    return result.data.username;
   } catch (error) {
     throw error;
   }
