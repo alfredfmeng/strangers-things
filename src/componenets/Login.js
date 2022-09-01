@@ -8,10 +8,11 @@ const Login = (props) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    const token = await loginUser(username, password);
-    if (!token) {
-      window.alert('Invalid username or password');
+    const result = await loginUser(username, password);
+    if (!result.success) {
+      window.alert(result.error.message);
     } else {
+      const token = result.data.token;
       handleLocalStorage(token);
       const user = await getMe(token);
       props.setCurrentUser(user);
