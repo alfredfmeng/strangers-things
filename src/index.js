@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { getPosts } from './api';
-import { Register, Posts } from './componenets';
+import { Register, Posts, Login } from './componenets';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -14,6 +14,7 @@ const App = () => {
   return (
     <div>
       <Register />
+      <Login />
       <Posts posts={posts} />
     </div>
   );
