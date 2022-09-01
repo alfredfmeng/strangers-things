@@ -5,6 +5,8 @@ import { Register, Posts, Login } from './componenets';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
+  const [currentUser, setCurrentuser] = useState('');
+
   useEffect(() => {
     const fetchPosts = async () => {
       setPosts(await getPosts());
@@ -13,8 +15,8 @@ const App = () => {
   }, []);
   return (
     <div>
-      <Register />
-      <Login />
+      <Register currentUser={currentUser} setCurrentuser={setCurrentuser} />
+      <Login currentUser={currentUser} setCurrentuser={setCurrentuser} />
       <Posts posts={posts} />
     </div>
   );
