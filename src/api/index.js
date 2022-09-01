@@ -31,3 +31,24 @@ export const registerUser = async (username, password) => {
     throw error;
   }
 };
+
+export const loginUser = async (username, password) => {
+  try {
+    const response = await fetch(`${BASE_URL}${COHORT}/users/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          username,
+          password,
+        },
+      }),
+    });
+    const result = await response.json();
+    return result.data.token;
+  } catch (error) {
+    throw error;
+  }
+};
