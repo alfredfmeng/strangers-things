@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { getPosts } from './api';
+import { Register } from './componenets';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -10,13 +11,13 @@ const App = () => {
     };
     fetchPosts();
   }, []);
-  console.log(posts);
   return (
-    <div>
-      {posts.map((post) => {
-        return <h1 key={post.id}>{post.title}</h1>;
-      })}
-    </div>
+    // <div>
+    //   {posts.map((post) => {
+    //     return <h1 key={post.id}>{post.title}</h1>;
+    //   })}
+    // </div>
+    <Register />
   );
 };
 
