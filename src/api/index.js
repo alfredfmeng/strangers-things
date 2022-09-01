@@ -26,7 +26,7 @@ export const registerUser = async (username, password) => {
       }),
     });
     const result = await response.json();
-    return result.data.token;
+    return result;
   } catch (error) {
     throw error;
   }
@@ -47,7 +47,9 @@ export const loginUser = async (username, password) => {
       }),
     });
     const result = await response.json();
-    const token = result.data.token ? result.data.token : null;
+    // const token = result.data.token ? result.data.token : null;
+    console.log(result);
+    return result;
   } catch (error) {
     throw error;
   }
@@ -89,7 +91,9 @@ export const newPost = async (
       }),
     });
     const result = await response.json();
-    const newPost = result.data.post;
+    console.log(result);
+    const post = result.data.post ? result.data.post : null;
+    return post;
   } catch (error) {
     throw error;
   }
