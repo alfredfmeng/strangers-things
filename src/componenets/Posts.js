@@ -4,9 +4,13 @@ const Posts = (props) => {
   const { posts } = props;
   return (
     <div>
-      {posts.map((post) => {
-        return <h1 key={post._id}>{post.title}</h1>;
-      })}
+      {posts && posts.length ? (
+        posts.map((post) => {
+          return <h1 key={post._id}>{post.title}</h1>;
+        })
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 };
