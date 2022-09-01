@@ -14,6 +14,7 @@ const Register = () => {
     evt.preventDefault();
     if (password === retypePassword) {
       const token = await registerUser(username, password);
+      console.log(token);
       localStorage.setItem('token', token);
     } else {
       window.alert('Passwords do not match');
