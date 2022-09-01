@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { loginUser } from '../api';
+import { getMe, loginUser } from '../api';
 import handleLocalStorage from '../utils/handleLocalStorage';
 
 const Login = () => {
@@ -9,11 +9,12 @@ const Login = () => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     const token = await loginUser(username, password);
-    await handleLocalStorage(token);
+    handleLocalStorage(token);
+    await getMe(token);
     setUsername('');
     setPassword('');
   };
-  console.log('THIS IS FROM OUTSIDE', username, password);
+
   return (
     <form id="login-form" onSubmit={handleSubmit}>
       <label htmlFor="email">Email:</label>
