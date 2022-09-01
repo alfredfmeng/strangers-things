@@ -5,7 +5,7 @@ const Posts = (props) => {
   return (
     <div>
       {posts.map((post) => {
-        return <h1 key={post.id}>{post.title}</h1>;
+        return <h1 key={post._id}>{post.title}</h1>;
       })}
     </div>
   );
