@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { registerUser } from '../api';
+import { registerUser, getMe } from '../api';
 import handleLocalStorage from '../utils/handleLocalStorage';
 
-const Register = () => {
+const Register = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
@@ -16,6 +16,10 @@ const Register = () => {
     if (password === retypePassword) {
       const token = await registerUser(username, password);
       handleLocalStorage(token);
+      const user = await getMe(token);
+      props.setCurrentUser(user);
+      setUsername('');
+      setPassword('');
     } else {
       window.alert('Passwords do not match');
     }

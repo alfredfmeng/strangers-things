@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getMe, loginUser } from '../api';
 import handleLocalStorage from '../utils/handleLocalStorage';
 
-const Login = () => {
+const Login = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -10,11 +10,11 @@ const Login = () => {
     evt.preventDefault();
     const token = await loginUser(username, password);
     handleLocalStorage(token);
-    await getMe(token);
+    const user = await getMe(token);
+    props.setCurrentUser(user);
     setUsername('');
     setPassword('');
   };
-
   return (
     <form id="login-form" onSubmit={handleSubmit}>
       <label htmlFor="email">Email:</label>
