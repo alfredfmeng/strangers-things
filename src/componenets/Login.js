@@ -16,6 +16,7 @@ const Login = (props) => {
       handleLocalStorage(token);
       const user = await getMe(token);
       props.setCurrentUser(user);
+      props.setIsLoggedIn(true);
       setUsername('');
       setPassword('');
     }
