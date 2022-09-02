@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { getPosts } from './api';
 import { Register, Posts, Login, PostForm } from './componenets';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes } from 'react-router-dom';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -14,12 +15,22 @@ const App = () => {
     };
     fetchPosts();
   }, [posts]);
-
+  console.log(isLoggedIn);
   return (
     <div>
-      <Register currentUser={currentUser} setCurrentUser={setCurrentUser} />
-      <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
-      <PostForm setPosts={setPosts} />
+      {!isLoggedIn ? (
+        <div>
+          <Register currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          <Login
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+            setIsLoggedIn={setIsLoggedIn}
+          />
+        </div>
+      ) : (
+        <PostForm setPosts={setPosts} />
+      )}
+
       <Posts posts={posts} />
     </div>
   );
